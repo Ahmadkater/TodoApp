@@ -1,18 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {AppRoutingModule , routingcomponents} from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { C1Component } from './c1/c1.component';
+import { NgbModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+import { NavigbarComponent } from './navigbar/navigbar.component';
+import { RegisterComponent } from './register/register.component';
+import { SigninComponent } from './signin/signin.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CardComponent } from './card/card.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    C1Component
+    routingcomponents,
+    ModalComponent,
+    NavigbarComponent,
+    RegisterComponent,
+    SigninComponent,
+    CarouselComponent,
+    CardComponent,
+    
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
