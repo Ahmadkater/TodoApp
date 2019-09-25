@@ -1,0 +1,82 @@
+<div class="page-header">
+
+    <h1 class="page-title">{{profile}}</h1>
+
+</div>
+
+<table class="table table-striped table-dark table-hover">
+    <thead>
+        <tr>
+            <th>Info</th>
+            <th>User Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Full Name</th>
+            <td class="align-middle">{{user.name}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td class="align-middle">{{user.email}}</td>
+        </tr>
+        <tr *ngIf="_adminservice.isadminLoggedIn()" class="bg-success">
+            <th>User ID</th>
+            <td class="align-middle">{{user.id}}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td class="align-middle">{{user.address}}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td class="align-middle">{{user.phone}}</td>
+        </tr>
+        <tr>
+            <th>Age</th>
+            <td class="align-middle">{{user.age}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-header">
+
+    <h3 class="page-title">Task List</h3>
+
+</div>
+
+<table class="table table-striped table-dark table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th *ngIf="_adminservice.isadminLoggedIn()" >TASK ID</th>
+            <th>TASK NAME</th>
+            <th>DATE</th>
+            <th>TIME</th>
+            <th>COMPLETED</th>
+            <th *ngIf="!_adminservice.isadminLoggedIn()">DELETE</th>
+            <!--<th>EDIT</th>-->
+            <th *ngIf="!_adminservice.isadminLoggedIn()"><a class="align-middle" [routerLink]="['/addtask']"
+                    class="btn btn-primary">Add Task</a></th>
+            <th *ngIf="_adminservice.isadminLoggedIn()">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of tasks; let i = index">
+            <td class="align-middle">{{i+1}}</td>
+            <td *ngIf="_adminservice.isadminLoggedIn()" class="align-middle">{{task._id}}</td>
+            <td class="align-middle">{{task.name}}</td>
+            <td class="align-middle">{{task.date}}</td>
+            <td class="align-middle">{{task.time}}</td>
+            <td class="align-middle">{{task.done}}</td>
+            <td *ngIf="!_adminservice.isadminLoggedIn()" class="align-middle">
+                <button (click)="delete_task(task._id)" class="btn btn-outline-danger">Delete</button>
+            </td>
+
+            <td *ngIf="_adminservice.isadminLoggedIn()" >
+                    <button (click)="complete_task(task._id)" class="btn btn-outline-success">Mark Completed</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

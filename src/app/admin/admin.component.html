@@ -1,0 +1,20 @@
+<div class="jumbotron">
+    <h2>Enter Admin Key</h2>
+    <form (submit)="onenter()" class="form-horizontal">
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="key" [(ngModel)]="key" name="key">
+        </div>
+        <h2>Find Patient</h2>
+        <div class="form-group">
+            <input type="string" class="form-control" placeholder="Enter Patient's Name" [(ngModel)]="pname" name="pname">
+        </div>
+        <div class="form-group">
+            <input type="string" class="form-control" placeholder="Enter Patient's Phone" [(ngModel)]="pphone" name="pphone">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

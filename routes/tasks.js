@@ -9,7 +9,8 @@ router.post('/add', passport.authenticate('jwt', { session : false}),  (req, res
       name: req.body.name,
       date: req.body.date,
       time: req.body.time,
-      owner: req.body.owner
+      owner: req.body.owner,
+      done: req.body.done
     });
 
     task.save((err, task) => {
@@ -67,6 +68,41 @@ router.delete('/remove/:id', passport.authenticate('jwt', { session : false}), (
         message: 'Task deleted'
       });
   });
+});
+
+//List-patient-Tasks-for-admin
+
+router.post('/patient', (req, res, next) => {
+
+  const owner = req.body.owner;
+
+  Task.find({ owner }, (err, tasks)=>{
+    if (err) {
+      return res.send({
+        success: false,
+        message: 'Error while reteriving the tasks'
+      });
+    }
+
+    return res.send({
+      success: true,
+      tasks
+    });
+  });
+});
+
+//Update-patient-Tasks-for-admin
+
+router.put('/edit/:id', function(req, res, next){
+  Task.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+      Task.findOne({_id: req.params.id}).then(function(task){
+          res.send({
+            success: true,
+            message: 'Updated the task',
+            task
+          });
+      });
+  }).catch(next);
 });
 
 module.exports = router;

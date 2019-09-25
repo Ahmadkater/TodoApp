@@ -15,6 +15,21 @@ const userschema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    address:
+    {
+        type: String,
+        required: true
+    },
+    phone:
+    {
+        type: String,
+        required:true
+    },
+    age:
+    {
+        type:String,
+        required:true
     }
 });
 userschema.pre('save', function (next) {
